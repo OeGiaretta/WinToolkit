@@ -2,7 +2,10 @@
 chcp 65001 >nul
 set LANG=pt_BR.UTF-8
 
-:options
+setlocal enabledelayedexpansion
+set "BASE_DIR=%~dp0"
+
+:menu
 cls
 echo =====================
 echo Menu Opcoes:
@@ -47,70 +50,51 @@ echo  36 - Criar uma Excecao no Antivirus (Windows Defender)
 echo =====================
 echo   X para sair
 echo =====================
-set /p input="Digite a opcao aqui: "
+set /p opt="Digite a opcao aqui: "
 
-if "%input%"=="1" goto:ipconfig
-if "%input%"=="2" goto:internet
-if "%input%"=="3" goto:chapecowan1
-if "%input%"=="4" goto:chapecowan2
-if "%input%"=="5" goto:imp
-if "%input%"=="6" goto:conexoes
-if "%input%"=="7" goto:reiniciar
-if "%input%"=="8" goto:desligar
-if "%input%"=="9" goto:anular
-if "%input%"=="10" goto:msg
-if "%input%"=="11" goto:ripconfig
-if "%input%"=="12" goto:statusvnc
-if "%input%"=="13" goto:stopvnc
-if "%input%"=="14" goto:startvnc
-if "%input%"=="15" goto:rsisinfo
-if "%input%"=="16" goto:sysop
-if "%input%"=="17" goto:usersys
-if "%input%"=="18" goto:remoteIns
-if "%input%"=="19" goto:remoteUni
-if "%input%"=="20" goto:remoteView
-if "%input%"=="21" goto:printersRem
-if "%input%"=="22" goto:macip
-if "%input%"=="23" goto:indentbit
-if "%input%"=="24" goto:impinst
-if "%input%"=="25" goto:officekey
-if "%input%"=="26" goto:viewdiks
-if "%input%"=="27" goto:remflush
-if "%input%"=="28" goto:remregister
-if "%input%"=="29" goto:closeexe
-if "%input%"=="30" goto:newproject
-if "%input%"=="31" goto:gerarcpf
-if "%input%"=="32" goto:validarcpf
-if "%input%"=="33" goto:gerarcnpj
-if "%input%"=="34" goto:validarcnpj
-if "%input%"=="35" goto:gerarPessoa
-if "%input%"=="36" goto:antExcecao
+if "%opt%"=="1" call "%BASE_DIR%\scripts\ipconfig.bat"
+if "%opt%"=="2" call "%BASE_DIR%\scripts\internet_teste.bat"
+if "%opt%"=="3" call "%BASE_DIR%\scripts\
+if "%opt%"=="4" call "%BASE_DIR%\scripts\
+if "%opt%"=="5" call "%BASE_DIR%\scripts\imp
+if "%opt%"=="6" call "%BASE_DIR%\scripts\conexoes
+if "%opt%"=="7" call "%BASE_DIR%\scripts\reiniciar
+if "%opt%"=="8" call "%BASE_DIR%\scripts\desligar
+if "%opt%"=="9" call "%BASE_DIR%\scripts\anular
+if "%opt%"=="10" call "%BASE_DIR%\scripts\msg
+if "%opt%"=="11" call "%BASE_DIR%\scripts\ripconfig
+if "%opt%"=="12" call "%BASE_DIR%\scripts\statusvnc
+if "%opt%"=="13" call "%BASE_DIR%\scripts\stopvnc
+if "%opt%"=="14" call "%BASE_DIR%\scripts\startvnc
+if "%opt%"=="15" call "%BASE_DIR%\scripts\rsisinfo
+if "%opt%"=="16" call "%BASE_DIR%\scripts\sysop
+if "%opt%"=="17" call "%BASE_DIR%\scripts\usersys
+if "%opt%"=="18" call "%BASE_DIR%\scripts\remoteIns
+if "%opt%"=="19" call "%BASE_DIR%\scripts\remoteUni
+if "%opt%"=="20" call "%BASE_DIR%\scripts\remoteView
+if "%opt%"=="21" call "%BASE_DIR%\scripts\printersRem
+if "%opt%"=="22" call "%BASE_DIR%\scripts\macip
+if "%opt%"=="23" call "%BASE_DIR%\scripts\indentbit
+if "%opt%"=="24" call "%BASE_DIR%\scripts\impinst
+if "%opt%"=="25" call "%BASE_DIR%\scripts\officekey
+if "%opt%"=="26" call "%BASE_DIR%\scripts\viewdiks
+if "%opt%"=="27" call "%BASE_DIR%\scripts\remflush
+if "%opt%"=="28" call "%BASE_DIR%\scripts\remregister
+if "%opt%"=="29" call "%BASE_DIR%\scripts\closeexe
+if "%opt%"=="30" call "%BASE_DIR%\scripts\newproject
+if "%opt%"=="31" call "%BASE_DIR%\scripts\gerarcpf
+if "%opt%"=="32" call "%BASE_DIR%\scripts\validarcpf
+if "%opt%"=="33" call "%BASE_DIR%\scripts\gerarcnpj
+if "%opt%"=="34" call "%BASE_DIR%\scripts\validarcnpj
+if "%opt%"=="35" call "%BASE_DIR%\scripts\gerarPessoa
+if "%opt%"=="36" call "%BASE_DIR%\scripts\antExcecao
 
-if "%input%"=="x" goto:exit
+if "%opt%"=="x" goto:exit
 
-echo Este menu nao existe!
-pause
-goto:options
+::echo Opcao invalida!
+::pause
 
-:ipconfig
-ipconfig.exe
-pause
-goto:options
-
-:internet
-ping 8.8.8.8 -n 6
-pause
-goto:options
-
-:chapecowan1
-ping 189.2.122.225 -n 6
-pause
-goto:options
-
-:chapecowan2
-ping 177.10.162.201 -n 6
-pause
-goto:options
+goto:menu
 
 :imp
 net stop spooler 
