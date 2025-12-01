@@ -39,7 +39,7 @@ It gathers multiple .bat scripts in one place, offering quick access to tools fo
 ## ▶️ How to Use
 1. Clone the repository:
     ```sh
-   git clone https://github.com/your-user/WinToolkit
+   git clone https://github.com/OeGiaretta/WinToolkit
     ```
 
 2. Run the main script:
