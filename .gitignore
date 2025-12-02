@@ -1,0 +1,30 @@
+# Arquivo de configuração com credenciais
+.env
+
+# Arquivos temporários gerados pelos scripts
+temp.txt
+temp_pessoa.json
+temp_ansi_test.txt
+
+# Arquivos de log (se houver)
+*.log
+
+# Arquivos de backup do Windows
+*.bak
+*~
+
+# Arquivos do sistema
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Arquivos de IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos compilados ou gerados
+*.exe
+*.dll
+*.obj

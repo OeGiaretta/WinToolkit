@@ -5,6 +5,22 @@ set LANG=pt_BR.UTF-8
 setlocal enabledelayedexpansion
 set "BASE_DIR=%~dp0"
 
+:: ============================================
+:: Carregar configurações
+:: ============================================
+if exist "%BASE_DIR%config.bat" (
+    call "%BASE_DIR%config.bat"
+) else (
+    echo AVISO: Arquivo config.bat nao encontrado!
+    echo Usando valores padrao...
+    set "DOMAIN=DOMAIN"
+    set "ADMIN_USER=administrador"
+    set "ADMIN_PASSWORD=SENHA"
+    set "TEST_IP=8.8.8.8"
+    set "VNC_SERVICE_NAME=uvnc_service"
+    set "SHUTDOWN_TIMEOUT=35"
+)
+
 :menu
 cls
 echo =====================
@@ -54,9 +70,9 @@ set /p opt="Digite a opcao aqui: "
 
 if "%opt%"=="1" call "%BASE_DIR%\scripts\ipconfig.bat"
 if "%opt%"=="2" call "%BASE_DIR%\scripts\internet_teste.bat"
-if "%opt%"=="3" call "%BASE_DIR%\scripts\
-if "%opt%"=="4" call "%BASE_DIR%\scripts\
-if "%opt%"=="5" call "%BASE_DIR%\scripts\imp
+if "%opt%"=="3" call "%BASE_DIR%\scripts\limpar_spool.bat"
+if "%opt%"=="4" call "%BASE_DIR%\scripts\conexoes.bat"
+if "%opt%"=="5" call "%BASE_DIR%\scripts\reiniciar_remotamente.bat
 if "%opt%"=="6" call "%BASE_DIR%\scripts\conexoes
 if "%opt%"=="7" call "%BASE_DIR%\scripts\reiniciar
 if "%opt%"=="8" call "%BASE_DIR%\scripts\desligar
@@ -96,39 +112,14 @@ if "%opt%"=="x" goto:exit
 
 goto:menu
 
-:imp
-net stop spooler 
-cd %systemroot%\system32\spool\PRINTERS
-del /f /s *.SHD
-del /f /s *.SPL 
-net start spooler
-pause
-goto:options
-
-:conexoes
-netstat
-pause
-goto:options
-
-:reiniciar
-set /p input2="informe o ip ou nome: "
-net use \\%input2% /USER:DOMAIN\administrador SENHA
-shutdown -r -f -m \\%input2% -t 35 -c "Seu computador sera reiniciado"
-pause
-goto:options
-
-:desligar
-set /p input5="informe o ip: "
-net use \\%input5% /USER:DOMAIN\administrador SENHA
-shutdown -s -f -m \\%input5% -t 35 -c "Seu Computador sera Desligado"
-pause
-goto:options
+@echo off
+setlocal enabledelayedexpansion
+set "BASE_DIR=%~dp0"
 
 :anular
 set /p input8="informe o ip: "
 shutdown -a -m \\%input8% 
 pause
-goto:options
 
 rem Inicio do comando
 
@@ -150,7 +141,6 @@ exit /b
 set "fullusername=%~1"
 set "username=%fullusername:*\=%"
 exit /b
-goto:options
 
 rem Fim do Comado
 
@@ -158,85 +148,74 @@ rem Fim do Comado
 set /p input11="informe o ip ou nome: "
 psexec \\%input11% ipconfig /all
 pause
-goto:options
 
 :statusvnc
 set /p input12="informe o ip ou nome: "
 SC \\%input12% query uvnc_service
 pause
-goto:options
 
 :stopvnc
 set /p input13="informe o ip ou nome: "
 SC \\%input13% stop uvnc_service
 pause
-goto:options
 
 :startvnc
 set /p input14="informe o ip ou nome: "
 SC \\%input14% start uvnc_service
 pause
-goto:options
 
 :rsisinfo
 set /p input15="Informe o IP ou NOME: "
 psexec \\%input15% systeminfo
 pause
-goto:options
 
 :sysop
 set /p input16="informe o ip ou NOME do Desktop: "
-net use J: \\%input16%\c$ /USER:DOMAIN\administrador SENHA
+net use J: \\%input16%\c$ /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
 J:
 if exist "Program Files (x86)\" (echo 64 bits) else (echo 32 bits)
 C:
 net use J: /delete
 pause
-goto:options
 
 :usersys
 set /p input18="informe o ip ou NOME do Desktop: "
 wmic /node:%input18% computersystem get username
 pause
-goto:options
 
 :remoteIns
 set /p input19="informe o ip ou NOME do Desktop: "
 set /p input20="informe o nome do software: "
-net use W: \\%input19%\c$\Users /USER:DOMAIN\administrador SENHA
+net use W: \\%input19%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
 W:
 winget install %input20%
 C:
 net use W: /delete
 pause
-goto:options
 
 :remoteUni
 set /p input21="informe o ip ou NOME do Desktop: "
 set /p input22="informe o nome do software: "
-net use W: \\%input21%\c$\Users /USER:DOMAIN\administrador SENHA
+net use W: \\%input21%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
 W:
 winget uninstall %input22%
 C:
 net use W: /delete
 pause
-goto:options
 
 :remoteview
 set /p input23="informe o ip ou NOME do Desktop: "
-net use W: \\%input23%\c$\Users /USER:DOMAIN\administrador SENHA
+net use W: \\%input23%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
 W:
 winget list
 C:
 net use W: /delete
 pause
-goto:options
 
 :printersRem
 set /p input24="informe o ip ou NOME do Desktop: "
 wmic /node:%input24% printer get caption, Status, portname
 pause
-goto:options
 
 :macip
 set /p input25="informe o ip: "
@@ -244,55 +223,47 @@ wmic /node:%input25% computersystem get username
 wmic /node:%input25% computersystem get model, name
 arp -a %input25%
 pause
-goto:options
 
 :indentbit
 set /p input26="informe o ip ou nome do Desktop: "
-wmic /node:%input26% /user:DOMAIN\administrador /password:SENHA os get osarchitecture
+wmic /node:%input26% /user:%DOMAIN%\%ADMIN_USER% /password:%ADMIN_PASSWORD% os get osarchitecture
 pause
-goto:options
 
 :impinst
 set /p input27="Informe o ip do Desktop Destinatario:"
 set /p input28="Informe o ip da impressora que deseja instalar:"
 rundll32 printui.dll, PrintUIEntry /o /c\\%input27% /ip %input28%
 pause
-goto:options
 
 :officekey
 set /p input29="Informe o ip ou nome do Desktop Destinatario: "
 wmic /node:%input29% path softwarelicensingservice get OA3xOriginalProductKey
 pause
-goto:options
 
 :viewdiks
 set /p input30="Informe o ip ou nome do Desktop Destinatario: "
 psexec -h -i \\%input30% -s powershell.exe -command "Get-PhysicalDisk"
 pause
-goto:options
 
 :remflush
 set /p input31="Informe o ip ou nome do Desktop Destinatario: "
-psexec \\%input31% -u DOMAIN\administrador -p SENHA -d -i ipconfig /flushdns 
+psexec \\%input31% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i ipconfig /flushdns 
 echo Finalizado!
 pause
-goto:options
 
 :remregister
 set /p input32="Informe o ip ou nome do Desktop Destinatario: "
-psexec \\%input32% -u DOMAIN\administrador -p SENHA -d -i ipconfig /register
+psexec \\%input32% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i ipconfig /register
 echo Finalizado!
 pause
-goto:options
 
 :closeexe
 set /p input33="Informe o ip ou nome do Desktop Destinatario: "
 psexec \\%input33% -s tasklist
 set /p input34="Digite o .exe que deseja fechar (EX:notepad.exe): " 
-psexec \\%input33% -u DOMAIN\administrador -p SENHA -d -i taskkill /F /IM %input34%
+psexec \\%input33% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i taskkill /F /IM %input34%
 echo Software finalizado!
 pause
-goto:options
 
 :newproject
 setlocal enabledelayedexpansion
@@ -315,15 +286,13 @@ exit
 )
 echo Programa Finalizado!
 pause
-goto:options
 
 :gerarcpf
 curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "acao=gerar_cpf&pontuacao=true" https://www.4devs.com.br/ferramentas_online.php > temp.txt
 set /p cpf=<temp.txt
 echo.
 echo CPF Gerado: %cpf%
-pause
-goto:options 
+pause 
 
 :validarcpf
 set /p cpf=Digite o CPF para validar: 
@@ -466,7 +435,6 @@ echo.
 echo %MAG%============================================%RESET%
 endlocal
 pause
-goto:options
 
 :antExcecao
 net session >nul 2>&1
