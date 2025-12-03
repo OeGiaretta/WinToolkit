@@ -1,12 +1,12 @@
 @echo off
 REM ============================================
-REM Arquivo de Configuração - WinToolkit
+REM Configuration File - WinToolkit
 REM ============================================
-REM Edite os valores abaixo conforme sua necessidade
+REM Edit the values below according to your needs
 
-set "DOMAIN=SEU_DOMINIO"
-set "ADMIN_USER=administrador"
-set "ADMIN_PASSWORD=sua_senha_aqui"
+set "DOMAIN=YOUR_DOMAIN"
+set "ADMIN_USER=administrator"
+set "ADMIN_PASSWORD=your_password_here"
 set "TEST_IP=8.8.8.8"
 set "VNC_SERVICE_NAME=uvnc_service"
 set "SHUTDOWN_TIMEOUT=35"

@@ -1,21 +1,21 @@
 @echo off
 chcp 65001 >nul
-set LANG=pt_BR.UTF-8
+set LANG=en_US.UTF-8
 
 setlocal enabledelayedexpansion
 set "BASE_DIR=%~dp0"
 
 :: ============================================
-:: Carregar configurações
+:: Load configuration
 :: ============================================
 if exist "%BASE_DIR%config.bat" (
     call "%BASE_DIR%config.bat"
 ) else (
-    echo AVISO: Arquivo config.bat nao encontrado!
-    echo Usando valores padrao...
+    echo WARNING: config.bat file not found!
+    echo Using default values...
     set "DOMAIN=DOMAIN"
-    set "ADMIN_USER=administrador"
-    set "ADMIN_PASSWORD=SENHA"
+    set "ADMIN_USER=administrator"
+    set "ADMIN_PASSWORD=PASSWORD"
     set "TEST_IP=8.8.8.8"
     set "VNC_SERVICE_NAME=uvnc_service"
     set "SHUTDOWN_TIMEOUT=35"
@@ -24,438 +24,89 @@ if exist "%BASE_DIR%config.bat" (
 :menu
 cls
 echo =====================
-echo Menu Opcoes:
+echo Menu Options:
 echo =====================
-echo   1 - Ver Meu Ip
-echo   2 - Testar Conexao Internet (ping 8.8.8.8)
-echo   3 - Testar Chapeco - Embratel
-echo   4 - Testar Chapeco - EntrenaNet
-echo   5 - Limpar Impressao
-echo   6 - Verificar Conexoes abertas
-echo   7 - Reiniciar Computador p/Rede
-echo   8 - Desligar Computador  p/Rede
-echo   9 - Anular Desligamento  p/Rede
-echo  10 - Enviar Menssagem     p/Rede
-echo  11 - Remoto Ipconfig
-echo  12 - Servico VNC - Status
-echo  13 - Servico VNC - Parar
-echo  14 - Servico VNC - Iniciar
-echo  15 - Remoto Informacoes de Sistema
-echo  16 - Verificar Sistema Operacional do Computador p/rede
-echo  17 - Verificar usuario logado no Desktop
-echo  18 - Instalar Software p/Rede
-echo  19 - Desinstalar Software p/Rede
-echo  20 - Listar Softwares Instalados p/Rede
-echo  21 - Listar impressoras instaladas p/Rede
-echo  22 - Descobrir MAC do usuario pelo ip
-echo  23 - Verificar Sys_Op p/rede 2.0
-echo  24 - Instalar impressora p/Rede
-echo  25 - Visualizar Chave office
-echo  26 - HDD ou SDD p/Rede
-echo  27 - FlushDNS Remoto
-echo  28 - RegisterDNS Remoto
-echo  29 - Fechar programas p/Rede
-echo  30 - Criar novo projeto JAVA
-echo  31 - Gerar CPF
-echo  32 - Validar CPF
-echo  33 - Gerar CNPJ
-echo  34 - Validar CNPJ
-echo  35 - Gerar dados de pessoas (Para fim de testes)
-echo  36 - Criar uma Excecao no Antivirus (Windows Defender)
+echo   1 - View My IP
+echo   2 - Test Internet Connection (ping 8.8.8.8)
+echo   3 - Clear Print Queue
+echo   4 - Check Open Connections
+echo   5 - Restart Computer via Network
+echo   6 - Shutdown Computer via Network
+echo   7 - Cancel Shutdown via Network
+echo   8 - Send Message via Network
+echo   9 - Remote IPConfig
+echo  10 - VNC Service - Status
+echo  11 - VNC Service - Stop
+echo  12 - VNC Service - Start
+echo  13 - Remote System Information
+echo  14 - Check Operating System of Computer via network
+echo  15 - Check logged user on Desktop
+echo  16 - Install Software via Network
+echo  17 - Uninstall Software via Network
+echo  18 - List Installed Software via Network
+echo  19 - List installed printers via Network
+echo  20 - Discover MAC address by IP
+echo  21 - Check System Architecture via network 2.0
+echo  22 - Install printer via Network
+echo  23 - View Office Key
+echo  24 - HDD or SSD via Network
+echo  25 - Remote FlushDNS
+echo  26 - Remote RegisterDNS
+echo  27 - Close programs via Network
+echo  28 - Create new JAVA project
+echo  29 - Generate CPF
+echo  30 - Validate CPF
+echo  31 - Generate CNPJ
+echo  32 - Validate CNPJ
+echo  33 - Generate person data (For testing purposes)
+echo  34 - Create an Exception in Antivirus (Windows Defender)
 
 echo =====================
-echo   X para sair
+echo   X to exit
 echo =====================
-set /p opt="Digite a opcao aqui: "
+set /p opt="Enter option here: "
 
-if "%opt%"=="1" call "%BASE_DIR%\scripts\ipconfig.bat"
-if "%opt%"=="2" call "%BASE_DIR%\scripts\internet_teste.bat"
-if "%opt%"=="3" call "%BASE_DIR%\scripts\limpar_spool.bat"
-if "%opt%"=="4" call "%BASE_DIR%\scripts\conexoes.bat"
-if "%opt%"=="5" call "%BASE_DIR%\scripts\reiniciar_remotamente.bat
-if "%opt%"=="6" call "%BASE_DIR%\scripts\conexoes
-if "%opt%"=="7" call "%BASE_DIR%\scripts\reiniciar
-if "%opt%"=="8" call "%BASE_DIR%\scripts\desligar
-if "%opt%"=="9" call "%BASE_DIR%\scripts\anular
-if "%opt%"=="10" call "%BASE_DIR%\scripts\msg
-if "%opt%"=="11" call "%BASE_DIR%\scripts\ripconfig
-if "%opt%"=="12" call "%BASE_DIR%\scripts\statusvnc
-if "%opt%"=="13" call "%BASE_DIR%\scripts\stopvnc
-if "%opt%"=="14" call "%BASE_DIR%\scripts\startvnc
-if "%opt%"=="15" call "%BASE_DIR%\scripts\rsisinfo
-if "%opt%"=="16" call "%BASE_DIR%\scripts\sysop
-if "%opt%"=="17" call "%BASE_DIR%\scripts\usersys
-if "%opt%"=="18" call "%BASE_DIR%\scripts\remoteIns
-if "%opt%"=="19" call "%BASE_DIR%\scripts\remoteUni
-if "%opt%"=="20" call "%BASE_DIR%\scripts\remoteView
-if "%opt%"=="21" call "%BASE_DIR%\scripts\printersRem
-if "%opt%"=="22" call "%BASE_DIR%\scripts\macip
-if "%opt%"=="23" call "%BASE_DIR%\scripts\indentbit
-if "%opt%"=="24" call "%BASE_DIR%\scripts\impinst
-if "%opt%"=="25" call "%BASE_DIR%\scripts\officekey
-if "%opt%"=="26" call "%BASE_DIR%\scripts\viewdiks
-if "%opt%"=="27" call "%BASE_DIR%\scripts\remflush
-if "%opt%"=="28" call "%BASE_DIR%\scripts\remregister
-if "%opt%"=="29" call "%BASE_DIR%\scripts\closeexe
-if "%opt%"=="30" call "%BASE_DIR%\scripts\newproject
-if "%opt%"=="31" call "%BASE_DIR%\scripts\gerarcpf
-if "%opt%"=="32" call "%BASE_DIR%\scripts\validarcpf
-if "%opt%"=="33" call "%BASE_DIR%\scripts\gerarcnpj
-if "%opt%"=="34" call "%BASE_DIR%\scripts\validarcnpj
-if "%opt%"=="35" call "%BASE_DIR%\scripts\gerarPessoa
-if "%opt%"=="36" call "%BASE_DIR%\scripts\antExcecao
+if "%opt%"=="1" call "%BASE_DIR%\scripts\ver_meu_ip.bat"
+if "%opt%"=="2" call "%BASE_DIR%\scripts\testar_internet.bat"
+if "%opt%"=="3" call "%BASE_DIR%\scripts\limpar_impressao.bat"
+if "%opt%"=="4" call "%BASE_DIR%\scripts\verificar_conexoes.bat"
+if "%opt%"=="5" call "%BASE_DIR%\scripts\reiniciar_computador_remoto.bat"
+if "%opt%"=="6" call "%BASE_DIR%\scripts\desligar_computador_remoto.bat"
+if "%opt%"=="7" call "%BASE_DIR%\scripts\anular_desligamento_remoto.bat"
+if "%opt%"=="8" call "%BASE_DIR%\scripts\enviar_mensagem_remota.bat"
+if "%opt%"=="9" call "%BASE_DIR%\scripts\ipconfig_remoto.bat"
+if "%opt%"=="10" call "%BASE_DIR%\scripts\vnc_status.bat"
+if "%opt%"=="11" call "%BASE_DIR%\scripts\vnc_parar.bat"
+if "%opt%"=="12" call "%BASE_DIR%\scripts\vnc_iniciar.bat"
+if "%opt%"=="13" call "%BASE_DIR%\scripts\sistema_info_remoto.bat"
+if "%opt%"=="14" call "%BASE_DIR%\scripts\verificar_arquitetura.bat"
+if "%opt%"=="15" call "%BASE_DIR%\scripts\usuario_logado.bat"
+if "%opt%"=="16" call "%BASE_DIR%\scripts\instalar_software_remoto.bat"
+if "%opt%"=="17" call "%BASE_DIR%\scripts\desinstalar_software_remoto.bat"
+if "%opt%"=="18" call "%BASE_DIR%\scripts\listar_softwares_remoto.bat"
+if "%opt%"=="19" call "%BASE_DIR%\scripts\listar_impressoras_remoto.bat"
+if "%opt%"=="20" call "%BASE_DIR%\scripts\descobrir_mac.bat"
+if "%opt%"=="21" call "%BASE_DIR%\scripts\verificar_arquitetura_remoto.bat"
+if "%opt%"=="22" call "%BASE_DIR%\scripts\instalar_impressora_remoto.bat"
+if "%opt%"=="23" call "%BASE_DIR%\scripts\visualizar_chave_office.bat"
+if "%opt%"=="24" call "%BASE_DIR%\scripts\verificar_hdd_ssd.bat"
+if "%opt%"=="25" call "%BASE_DIR%\scripts\flushdns_remoto.bat"
+if "%opt%"=="26" call "%BASE_DIR%\scripts\registerdns_remoto.bat"
+if "%opt%"=="27" call "%BASE_DIR%\scripts\fechar_programa_remoto.bat"
+if "%opt%"=="28" call "%BASE_DIR%\scripts\criar_projeto_java.bat"
+if "%opt%"=="29" call "%BASE_DIR%\scripts\gerar_cpf.bat"
+if "%opt%"=="30" call "%BASE_DIR%\scripts\validar_cpf.bat"
+if "%opt%"=="31" call "%BASE_DIR%\scripts\gerar_cnpj.bat"
+if "%opt%"=="32" call "%BASE_DIR%\scripts\validar_cnpj.bat"
+if "%opt%"=="33" call "%BASE_DIR%\scripts\gerar_dados_pessoa.bat"
+if "%opt%"=="34" call "%BASE_DIR%\scripts\criar_excecao_defender.bat"
 
 if "%opt%"=="x" goto:exit
 
-::echo Opcao invalida!
+::echo Invalid option!
 ::pause
 
 goto:menu
 
-@echo off
-setlocal enabledelayedexpansion
-set "BASE_DIR=%~dp0"
-
-:anular
-set /p input8="informe o ip: "
-shutdown -a -m \\%input8% 
-pause
-
-rem Inicio do comando
-
-:msg
-set /p input9="Informe o IP: "
-set input10=%input9%
-
-for /f "usebackq delims=\ tokens=2" %%a in (`wmic /node:%input10% computersystem get username /value ^| findstr /r /v "^$"`) do (
-  call :TrimUsername "%%a"
-)
-
-set /p input17="Digite a mensagem: "
-msg /W /V /SERVER:%input9% %username% %input17%
-pause
-
-exit /b
-
-:TrimUsername
-set "fullusername=%~1"
-set "username=%fullusername:*\=%"
-exit /b
-
-rem Fim do Comado
-
-:ripconfig
-set /p input11="informe o ip ou nome: "
-psexec \\%input11% ipconfig /all
-pause
-
-:statusvnc
-set /p input12="informe o ip ou nome: "
-SC \\%input12% query uvnc_service
-pause
-
-:stopvnc
-set /p input13="informe o ip ou nome: "
-SC \\%input13% stop uvnc_service
-pause
-
-:startvnc
-set /p input14="informe o ip ou nome: "
-SC \\%input14% start uvnc_service
-pause
-
-:rsisinfo
-set /p input15="Informe o IP ou NOME: "
-psexec \\%input15% systeminfo
-pause
-
-:sysop
-set /p input16="informe o ip ou NOME do Desktop: "
-net use J: \\%input16%\c$ /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
-J:
-if exist "Program Files (x86)\" (echo 64 bits) else (echo 32 bits)
-C:
-net use J: /delete
-pause
-
-:usersys
-set /p input18="informe o ip ou NOME do Desktop: "
-wmic /node:%input18% computersystem get username
-pause
-
-:remoteIns
-set /p input19="informe o ip ou NOME do Desktop: "
-set /p input20="informe o nome do software: "
-net use W: \\%input19%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
-W:
-winget install %input20%
-C:
-net use W: /delete
-pause
-
-:remoteUni
-set /p input21="informe o ip ou NOME do Desktop: "
-set /p input22="informe o nome do software: "
-net use W: \\%input21%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
-W:
-winget uninstall %input22%
-C:
-net use W: /delete
-pause
-
-:remoteview
-set /p input23="informe o ip ou NOME do Desktop: "
-net use W: \\%input23%\c$\Users /USER:%DOMAIN%\%ADMIN_USER% %ADMIN_PASSWORD%
-W:
-winget list
-C:
-net use W: /delete
-pause
-
-:printersRem
-set /p input24="informe o ip ou NOME do Desktop: "
-wmic /node:%input24% printer get caption, Status, portname
-pause
-
-:macip
-set /p input25="informe o ip: "
-wmic /node:%input25% computersystem get username
-wmic /node:%input25% computersystem get model, name
-arp -a %input25%
-pause
-
-:indentbit
-set /p input26="informe o ip ou nome do Desktop: "
-wmic /node:%input26% /user:%DOMAIN%\%ADMIN_USER% /password:%ADMIN_PASSWORD% os get osarchitecture
-pause
-
-:impinst
-set /p input27="Informe o ip do Desktop Destinatario:"
-set /p input28="Informe o ip da impressora que deseja instalar:"
-rundll32 printui.dll, PrintUIEntry /o /c\\%input27% /ip %input28%
-pause
-
-:officekey
-set /p input29="Informe o ip ou nome do Desktop Destinatario: "
-wmic /node:%input29% path softwarelicensingservice get OA3xOriginalProductKey
-pause
-
-:viewdiks
-set /p input30="Informe o ip ou nome do Desktop Destinatario: "
-psexec -h -i \\%input30% -s powershell.exe -command "Get-PhysicalDisk"
-pause
-
-:remflush
-set /p input31="Informe o ip ou nome do Desktop Destinatario: "
-psexec \\%input31% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i ipconfig /flushdns 
-echo Finalizado!
-pause
-
-:remregister
-set /p input32="Informe o ip ou nome do Desktop Destinatario: "
-psexec \\%input32% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i ipconfig /register
-echo Finalizado!
-pause
-
-:closeexe
-set /p input33="Informe o ip ou nome do Desktop Destinatario: "
-psexec \\%input33% -s tasklist
-set /p input34="Digite o .exe que deseja fechar (EX:notepad.exe): " 
-psexec \\%input33% -u %DOMAIN%\%ADMIN_USER% -p %ADMIN_PASSWORD% -d -i taskkill /F /IM %input34%
-echo Software finalizado!
-pause
-
-:newproject
-setlocal enabledelayedexpansion
-set /p input35="Onde voce gostaria de gerar o projeto? "
-cd !input35!
-echo Voce selecionou o caminho: 
-pwd
-pause
-
-set /p input36="Digite o nome do novo projeto: "
-echo Criando novo projeto...
-call mvn archetype:generate -DgroupId=com.main -DartifactId=!input36! -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-
-set /p input37="Gostaria de abrir o novo projeto? Y/n: "
-echo Abrindo projeto!!
-if /I !input37!==y (
-cd !input35!/!input36! && code .
-echo Projeto aberto!!
-exit
-)
-echo Programa Finalizado!
-pause
-
-:gerarcpf
-curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "acao=gerar_cpf&pontuacao=true" https://www.4devs.com.br/ferramentas_online.php > temp.txt
-set /p cpf=<temp.txt
-echo.
-echo CPF Gerado: %cpf%
-pause 
-
-:validarcpf
-set /p cpf=Digite o CPF para validar: 
-curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "acao=validar_cpf&txt_cpf=%cpf%" https://www.4devs.com.br/ferramentas_online.php > temp.txt
-type temp.txt
-pause
-goto options
-
-:gerarcnpj
-curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "acao=gerar_cnpj&pontuacao=true" https://www.4devs.com.br/ferramentas_online.php > temp.txt
-set /p cnpj=<temp.txt
-echo.
-echo CNPJ Gerado: %cnpj%
-pause
-goto options
-
-:validarcnpj
-set /p cnpj=Digite o CNPJ para validar: 
-curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "acao=validar_cnpj&txt_cnpj=%cnpj%" https://www.4devs.com.br/ferramentas_online.php > temp.txt
-type temp.txt
-pause
-goto options
-
-:gerarPessoa
-echo Gerando pessoa, aguarde...
-
-curl -s -X POST ^
-  -H "Content-Type: application/x-www-form-urlencoded" ^
-  -d "acao=gerar_pessoa&sexo=I&pontuacao=S&idade=0&txt_qtde=1" ^
-  https://www.4devs.com.br/ferramentas_online.php > temp_pessoa.json
-
-setlocal enabledelayedexpansion
-
-REM Lê a linha inteira do JSON
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).nome"') do set nome=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).idade"') do set idade=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).cpf"') do set cpf=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).rg"') do set rg=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).data_nasc"') do set data_nasc=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).sexo"') do set sexo=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).signo"') do set signo=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).mae"') do set mae=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).pai"') do set pai=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).email"') do set email=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).senha"') do set senha=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).cep"') do set cep=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).endereco"') do set endereco=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).numero"') do set numero=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).bairro"') do set bairro=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).cidade"') do set cidade=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).estado"') do set estado=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).telefone_fixo"') do set telefone_fixo=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).celular"') do set celular=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).altura"') do set altura=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).peso"') do set peso=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).tipo_sanguineo"') do set tipo_sanguineo=%%a
-for /f "delims=" %%a in ('powershell -NoProfile -Command "(Get-Content temp_pessoa.json | ConvertFrom-Json).cor"') do set cor=%%a
-
-
-@echo off
-setlocal EnableDelayedExpansion
-
-:: =====================================================
-:: DETECTAR SUPORTE A ANSI
-:: =====================================================
-set "ansi_ok=0"
-
-:: Testar se Windows Terminal, PowerShell moderno ou CMD novo
-for /f "tokens=2 delims==" %%A in ('wmic os get Caption /value 2^>nul') do (
-    echo %%A | find /i "Windows 10" >nul && set ansi_ok=1
-    echo %%A | find /i "Windows 11" >nul && set ansi_ok=1
-)
-
-:: Tentar ativar ANSI pelo registro (não falha se não puder)
-reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
-
-:: Teste final: se o terminal realmente exibe ANSI
-echo [31m>temp_ansi_test.txt
-findstr /r ".*" temp_ansi_test.txt | find "" >nul || set ansi_ok=1
-del temp_ansi_test.txt >nul 2>&1
-
-:: =====================================================
-:: DEFINIR CORES SE ANSI FOR SUPORTADO
-:: =====================================================
-if !ansi_ok!==1 (
-    set "YEL=[33m"
-    set "CYAN=[36m"
-    set "MAG=[35m"
-    set "GRN=[32m"
-    set "RESET=[0m"
-) else (
-    set "YEL="
-    set "CYAN="
-    set "MAG="
-    set "GRN="
-    set "RESET="
-)
-
-:: =====================================================
-:: SAÍDA BONITA / COMPATÍVEL
-:: =====================================================
-
-echo %MAG%============================================%RESET%
-echo %CYAN%               PESSOA GERADA%RESET%
-echo %MAG%============================================%RESET%
-
-echo %GRN%[Dados Pessoais]%RESET%
-echo   Nome:              %YEL%%nome%%RESET%
-echo   Idade:             %YEL%%idade%%RESET%
-echo   Sexo:              %YEL%%sexo%%RESET%
-echo   Data Nasc.:        %YEL%%data_nasc%%RESET%
-echo   Signo:             %YEL%%signo%%RESET%
-
-echo.
-echo %GRN%[Documentos]%RESET%
-echo   CPF:               %YEL%%cpf%%RESET%
-echo   RG:                %YEL%%rg%%RESET%
-
-echo.
-echo %GRN%[Filiação]%RESET%
-echo   Mãe:               %YEL%%mae%%RESET%
-echo   Pai:               %YEL%%pai%%RESET%
-
-echo.
-echo %GRN%[Contato]%RESET%
-echo   Email:             %YEL%%email%%RESET%
-echo   Senha:             %YEL%%senha%%RESET%
-echo   Telefone Fixo:     %YEL%%telefone_fixo%%RESET%
-
-echo.
-echo %GRN%[Endereço]%RESET%
-echo   CEP:               %YEL%%cep%%RESET%
-echo   Endereço:          %YEL%%endereco%%RESET%
-echo   Número:            %YEL%%numero%%RESET%
-echo   Bairro:            %YEL%%bairro%%RESET%
-echo   Cidade:            %YEL%%cidade%%RESET%
-echo   Estado:            %YEL%%estado%%RESET%
-
-echo.
-echo %MAG%============================================%RESET%
-endlocal
-pause
-
-:antExcecao
-net session >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Solicitando privilegios de administrador...
-    powershell -Command "Start-Process '%~f0' -Verb RunAs"
-    exit /b
-)
-set /p input1="Digite o caminho do Priori Social: "
-powershell -Command "Add-MpPreference -ExclusionPath '%input1%'"
-echo.
-echo Lista de exclusoes atuais:
-powershell -Command "(Get-MpPreference).ExclusionPath"
-pause
-goto options
-
 :exit
 exit
-
-
-rem SCAN M4yGOD-crtM.exaroton.me
-rem nmap -sS -sU -p- -A -v -T4 --script "default,safe,vuln" -oA scan_completo scanme.nmap.org      =       Scan agressivo de portas
-rem nmap -A -v -T4 <alvo> = Scan simples com maximo de informação.
-rem nmap -sS -sT <alvo> = Scan Basico.
