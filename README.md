@@ -2,6 +2,8 @@
 
 ![WinToolkit Logo](assets/logo.png)
 
+**🇺🇸 English** | [🇧🇷 Português (Brasil)](README.pt-BR.md)
+
 WinToolkit is a comprehensive collection of Windows command-line utilities designed to simplify daily system administration tasks.  
 It gathers multiple .bat scripts in one place, offering quick access to tools for networking, diagnostics, automation, system cleanup, remote management, and more.
 
