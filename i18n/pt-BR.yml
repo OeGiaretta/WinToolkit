@@ -1,0 +1,176 @@
+translations:
+  menu:
+    title: "Opções do Menu:"
+    prompt: "Digite a opção desejada: "
+    exit_key: "X"
+    exit_value: "Sair"
+    options:
+      - key: view_my_ip
+        index: 1
+        value: "Ver Meu IP"
+        file: "ver_meu_ip.bat"
+
+      - key: test_internet
+        index: 2
+        value: "Testar Internet (ping 8.8.8.8)"
+        file: "testar_internet.bat"
+
+      - key: clear_print_queue
+        index: 3
+        value: "Limpar Fila de Impressão"
+        file: "limpar_impressao.bat"
+
+      - key: check_open_connections
+        index: 4
+        value: "Ver Conexões Abertas"
+        file: "verificar_conexoes.bat"
+
+      - key: restart_computer_via_network
+        index: 5
+        value: "Reiniciar Computador via Rede"
+        file: "reiniciar_computador_remoto.bat"
+
+      - key: shutdown_computer_via_network
+        index: 6
+        value: "Desligar Computador via Rede"
+        file: "desligar_computador_remoto.bat"
+
+      - key: cancel_shutdown_via_network
+        index: 7
+        value: "Cancelar Desligamento via Rede"
+        file: "anular_desligamento_remoto.bat"
+
+      - key: send_message_via_network
+        index: 8
+        value: "Enviar Mensagem via Rede"
+        file: "enviar_mensagem_remota.bat"
+
+      - key: remote_ipconfig
+        index: 9
+        value: "IPConfig Remoto"
+        file: "ipconfig_remoto.bat"
+
+      - key: vnc_service_status
+        index: 10
+        value: "Serviço VNC - Status"
+        file: "vnc_status.bat"
+
+      - key: vnc_service_stop
+        index: 11
+        value: "Serviço VNC - Parar"
+        file: "vnc_parar.bat"
+
+      - key: vnc_service_start
+        index: 12
+        value: "Serviço VNC - Iniciar"
+        file: "vnc_iniciar.bat"
+
+      - key: remote_system_information
+        index: 13
+        value: "Informações do Sistema Remoto"
+        file: "sistema_info_remoto.bat"
+
+      - key: check_operating_system_of_computer_via_network
+        index: 14
+        value: "Verificar Sistema Operacional via rede"
+        file: "verificar_arquitetura.bat"
+
+      - key: check_logged_user_on_desktop
+        index: 15
+        value: "Verificar usuário logado no Desktop"
+        file: "usuario_logado.bat"
+
+      - key: install_software_via_network
+        index: 16
+        value: "Instalar Software via Rede"
+        file: "instalar_software_remoto.bat"
+
+      - key: uninstall_software_via_network
+        index: 17
+        value: "Desinstalar Software via Rede"
+        file: "desinstalar_software_remoto.bat"
+
+      - key: list_installed_software_via_network
+        index: 18
+        value: "Listar Softwares Instalados"
+        file: "listar_softwares_remoto.bat"
+
+      - key: list_installed_printers_via_network
+        index: 19
+        value: "Listar Impressoras Instaladas"
+        file: "listar_impressoras_remoto.bat"
+
+      - key: discover_mac_address_by_ip
+        index: 20
+        value: "Descobrir MAC por IP"
+        file: "descobrir_mac.bat"
+
+      - key: check_system_architecture_via_network_2_0
+        index: 21
+        value: "Verificar Arquitetura via rede"
+        file: "verificar_arquitetura_remoto.bat"
+
+      - key: install_printer_via_network
+        index: 22
+        value: "Instalar Impressora via Rede"
+        file: "instalar_impressora_remoto.bat"
+
+      - key: view_office_key
+        index: 23
+        value: "Visualizar Chave do Office"
+        file: "visualizar_chave_office.bat"
+
+      - key: hdd_or_ssd_via_network
+        index: 24
+        value: "Verificar HDD/SSD via Rede"
+        file: "verificar_hdd_ssd.bat"
+
+      - key: remote_flushdns
+        index: 25
+        value: "Limpar Cache DNS Remotamente"
+        file: "flushdns_remoto.bat"
+
+      - key: remote_registerdns
+        index: 26
+        value: "Registrar DNS Remotamente"
+        file: "registerdns_remoto.bat"
+
+      - key: close_programs_via_network
+        index: 27
+        value: "Fechar Programas via Rede"
+        file: "fechar_programa_remoto.bat"
+
+      - key: create_new_java_project
+        index: 28
+        value: "Criar novo Projeto Java"
+        file: "criar_projeto_java.bat"
+
+      - key: generate_cpf
+        index: 29
+        value: "Gerar CPF"
+        file: "gerar_cpf.bat"
+
+      - key: validate_cpf
+        index: 30
+        value: "Validar CPF"
+        file: "validar_cpf.bat"
+
+      - key: generate_cnpj
+        index: 31
+        value: "Gerar CNPJ"
+        file: "gerar_cnpj.bat"
+
+      - key: validate_cnpj
+        index: 32
+        value: "Validar CNPJ"
+        file: "validar_cnpj.bat"
+
+      - key: generate_person_data_for_testing_purposes
+        index: 33
+        value: "Gerar dados de pessoa (Para testes)"
+        file: "gerar_dados_pessoa.bat"
+
+      - key: create_exception_in_antivirus_windows_defender
+        index: 34
+        value: "Criar exceção no Antivírus (Windows Defender)"
+        file: "criar_excecao_defender.bat"

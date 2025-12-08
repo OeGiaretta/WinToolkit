@@ -69,13 +69,17 @@ It gathers multiple .bat scripts in one place, offering quick access to tools fo
 WinToolkit/
 ├── assets/
 │   └── logo.png
+├── i18n/                 # Internationalization files
+│   ├── en-US.yml         # English translations
+│   └── pt-BR.yml         # Portuguese (Brazil) translations
+├── lib/                  # Internal utilities
+│   └── parse_yaml.ps1    # YAML parser for translations
 ├── scripts/              # 34 organized scripts
 │   ├── ver_meu_ip.bat
 │   ├── testar_internet.bat
 │   ├── limpar_impressao.bat
 │   ├── reiniciar_computador_remoto.bat
 │   └── ... (31 other scripts)
-├── tests/                # Test scripts
 ├── config.bat            # Configuration file
 ├── WinToolkit.bat        # Main menu
 └── README.md
@@ -102,9 +106,9 @@ WinToolkit/
    git clone https://github.com/OeGiaretta/WinToolkit
    ```
 
-2. **Configure credentials** (optional):
+2. **Configure credentials and preferences** (optional):
    
-   Edit the `config.bat` file with your domain credentials:
+   Edit the `config.bat` file with your domain credentials and preferences:
    ```batch
    set "DOMAIN=YOUR_DOMAIN"
    set "ADMIN_USER=administrator"
@@ -112,9 +116,23 @@ WinToolkit/
    set "TEST_IP=8.8.8.8"
    set "VNC_SERVICE_NAME=uvnc_service"
    set "SHUTDOWN_TIMEOUT=35"
+   set "LANGUAGE=en-US"
    ```
 
    > **Note**: If `config.bat` doesn't exist, the system will use default values.
+
+3. **Language Configuration** 🌍:
+   
+   WinToolkit supports multiple languages through YAML-based internationalization:
+   
+   - **Available Languages**:
+     - `en-US` - English (United States)
+     - `pt-BR` - Português (Brasil)
+   
+   - **Change Language**: Edit the `LANGUAGE` variable in `config.bat`
+   - **Custom Translations**: Create new YAML files in the `i18n/` directory following the same structure as existing translation files
+   
+   The menu interface will automatically load the selected language on startup.
 
 ---
 
@@ -138,6 +156,7 @@ WinToolkit/
 - ✅ **Error Handling** - Clear success/error messages
 - ✅ **Dependency Checking** - Verifies if required tools are installed
 - ✅ **Centralized Configuration** - All settings in a single file
+- ✅ **Multi-language Support** - YAML-based internationalization (en-US, pt-BR)
 - ✅ **Portable** - No installation required
 - ✅ **Modular** - Each functionality in a separate script
 
@@ -223,7 +242,7 @@ Required only for Java project creation. Download: [Apache Maven](https://maven.
 - [ ] Improve logging system
 - [ ] Add PowerShell version
 - [ ] Add more validations
-- [ ] Multi-language support
+- [x] Multi-language support (en-US, pt-BR)
 
 ---
 
