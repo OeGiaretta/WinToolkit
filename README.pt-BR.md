@@ -69,13 +69,17 @@ Reúne múltiplos scripts .bat em um único lugar, oferecendo acesso rápido a f
 WinToolkit/
 ├── assets/
 │   └── logo.png
+├── i18n/                 # Arquivos de internacionalização
+│   ├── en-US.yml         # Traduções em inglês
+│   └── pt-BR.yml         # Traduções em português (Brasil)
+├── lib/                  # Utilitários internos
+│   └── parse_yaml.ps1    # Parser YAML para traduções
 ├── scripts/              # 34 scripts organizados
 │   ├── ver_meu_ip.bat
 │   ├── testar_internet.bat
 │   ├── limpar_impressao.bat
 │   ├── reiniciar_computador_remoto.bat
 │   └── ... (31 outros scripts)
-├── tests/                # Scripts de teste
 ├── config.bat            # Arquivo de configuração
 ├── WinToolkit.bat        # Menu principal
 └── README.md
@@ -102,9 +106,9 @@ WinToolkit/
    git clone https://github.com/OeGiaretta/WinToolkit
    ```
 
-2. **Configure as credenciais** (opcional):
+2. **Configure as credenciais e preferências** (opcional):
    
-   Edite o arquivo `config.bat` com suas credenciais de domínio:
+   Edite o arquivo `config.bat` com suas credenciais de domínio e preferências:
    ```batch
    set "DOMAIN=SEU_DOMINIO"
    set "ADMIN_USER=administrador"
@@ -112,9 +116,23 @@ WinToolkit/
    set "TEST_IP=8.8.8.8"
    set "VNC_SERVICE_NAME=uvnc_service"
    set "SHUTDOWN_TIMEOUT=35"
+   set "LANGUAGE=pt-BR"
    ```
 
    > **Nota**: Se o `config.bat` não existir, o sistema usará valores padrão.
+
+3. **Configuração de Idioma** 🌍:
+   
+   O WinToolkit suporta múltiplos idiomas através de internacionalização baseada em YAML:
+   
+   - **Idiomas Disponíveis**:
+     - `en-US` - English (United States)
+     - `pt-BR` - Português (Brasil)
+   
+   - **Mudar Idioma**: Edite a variável `LANGUAGE` no arquivo `config.bat`
+   - **Traduções Personalizadas**: Crie novos arquivos YAML no diretório `i18n/` seguindo a mesma estrutura dos arquivos de tradução existentes
+   
+   A interface do menu carregará automaticamente o idioma selecionado na inicialização.
 
 ---
 
@@ -138,6 +156,7 @@ WinToolkit/
 - ✅ **Tratamento de Erros** - Mensagens claras de sucesso/erro
 - ✅ **Verificação de Dependências** - Verifica se ferramentas necessárias estão instaladas
 - ✅ **Configuração Centralizada** - Todas as configurações em um único arquivo
+- ✅ **Suporte Multilíngue** - Internacionalização baseada em YAML (en-US, pt-BR)
 - ✅ **Portátil** - Não requer instalação
 - ✅ **Modular** - Cada funcionalidade em script separado
 
@@ -223,7 +242,7 @@ Necessário apenas para criação de projetos Java. Download: [Apache Maven](htt
 - [ ] Melhorar sistema de logs
 - [ ] Adicionar versão PowerShell
 - [ ] Adicionar mais validações
-- [ ] Suporte a múltiplos idiomas
+- [x] Suporte a múltiplos idiomas (en-US, pt-BR)
 
 ---
 
