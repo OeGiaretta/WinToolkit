@@ -1,8 +1,10 @@
 @echo off
 chcp 1252 >nul
+chcp 65001 >nul
 
 setlocal enabledelayedexpansion
 set "BASE_DIR=%~dp0"
+call "%~dp0lib\ui\ui.bat"
 
 :: ============================================
 :: Load configuration
@@ -87,20 +89,32 @@ if not defined MENU_EXIT_KEY (
 :: Main Menu Loop
 :: ============================================
 
+echo.
+echo %BYELLOW%Available Modules:%RESET%
+echo.
+
 :menu
 cls
-echo =====================
-echo !MENU_TITLE!
-echo =====================
+
+echo %CYAN%╔══════════════════════════════════════╗%RESET%
+echo %CYAN%║%RESET%        %BGREEN%WinToolkit%RESET%                    %CYAN%║%RESET%
+echo %CYAN%║%RESET%      Modular CLI Toolkit             %CYAN%║%RESET%
+echo %CYAN%║%RESET%            %BYELLOW%v0.1.0%RESET%                    %CYAN%║%RESET%
+echo %CYAN%╚══════════════════════════════════════╝%RESET%
 
 for /l %%i in (1,1,!MENU_COUNT!) do (
-    if defined MENU_VALUE_%%i echo   %%i - !MENU_VALUE_%%i!
+    if defined MENU_VALUE_%%i (
+        echo   %BCYAN%[%%i]%RESET% !MENU_VALUE_%%i!
+    )
 )
 
-echo   !MENU_EXIT_KEY! - !MENU_EXIT_VALUE!
+echo.
+echo %BRED%[!MENU_EXIT_KEY!]%RESET% !MENU_EXIT_VALUE!
 
-echo =====================
-set /p opt="!MENU_PROMPT!"
+echo.
+echo %CYAN%+--------------------------------------+%RESET%
+echo.
+set /p opt=%WHITE%!MENU_PROMPT! ^>%RESET% 
 
 if /i "!opt!"=="!MENU_EXIT_KEY!" goto:exit
 
@@ -113,7 +127,7 @@ for /l %%i in (1,1,!MENU_COUNT!) do (
             if exist "%BASE_DIR%scripts\!script!" (
                 call "%BASE_DIR%scripts\!script!"
             ) else (
-                echo ERROR: Script '!script!' not found!
+                call :ERROR "Script file !script! not found!" 
                 pause
             )
         )
