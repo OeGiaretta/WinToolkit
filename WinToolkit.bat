@@ -1,5 +1,4 @@
 @echo off
-chcp 1252 >nul
 chcp 65001 >nul
 
 setlocal enabledelayedexpansion
@@ -94,13 +93,8 @@ echo %BYELLOW%Available Modules:%RESET%
 echo.
 
 :menu
-cls
 
-echo %CYAN%╔══════════════════════════════════════╗%RESET%
-echo %CYAN%║%RESET%        %BGREEN%WinToolkit%RESET%                    %CYAN%║%RESET%
-echo %CYAN%║%RESET%      Modular CLI Toolkit             %CYAN%║%RESET%
-echo %CYAN%║%RESET%            %BYELLOW%v0.1.0%RESET%                    %CYAN%║%RESET%
-echo %CYAN%╚══════════════════════════════════════╝%RESET%
+call :header
 
 for /l %%i in (1,1,!MENU_COUNT!) do (
     if defined MENU_VALUE_%%i (
@@ -116,7 +110,7 @@ echo %CYAN%+--------------------------------------+%RESET%
 echo.
 set /p opt=%WHITE%!MENU_PROMPT! ^>%RESET% 
 
-if /i "!opt!"=="!MENU_EXIT_KEY!" goto:exit
+if /i "!opt!"=="!MENU_EXIT_KEY!" goto exit
 
 set "valid=0"
 for /l %%i in (1,1,!MENU_COUNT!) do (
@@ -127,7 +121,7 @@ for /l %%i in (1,1,!MENU_COUNT!) do (
             if exist "%BASE_DIR%scripts\!script!" (
                 call "%BASE_DIR%scripts\!script!"
             ) else (
-                call :ERROR "Script file !script! not found!" 
+                call :error "Script file !script! not found!" 
                 pause
             )
         )
@@ -139,7 +133,25 @@ if !valid! equ 0 if not "!opt!"=="" (
     pause
 )
 
-goto:menu
+goto menu
+
+:error
+echo.
+echo %BRED%[ERROR]%RESET% %~1
+echo.
+exit /b
+
+:success
+echo.
+echo %BGREEN%[SUCCESS]%RESET% %~1
+echo.
+exit /b
+
+:info
+echo.
+echo %BCYAN%[INFO]%RESET% %~1
+echo.
+exit /b
 
 :exit
 exit

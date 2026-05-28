@@ -22,5 +22,15 @@ set "BYELLOW=%ESC%[93m"
 set "BBLUE=%ESC%[94m"
 set "BCYAN=%ESC%[96m"
 
+:header
+cls
+
+echo %CYAN%╔══════════════════════════════════════╗%RESET%
+echo %CYAN%║%RESET%        %BGREEN%WinToolkit%RESET%                    %CYAN%║%RESET%
+echo %CYAN%║%RESET%      Modular CLI Toolkit             %CYAN%║%RESET%
+echo %CYAN%║%RESET%            %BYSELLOW%v0.1.0%RESET%                    %CYAN%║%RESET%
+echo %CYAN%╚══════════════════════════════════════╝%RESET%
+
+
 echo.
 exit /b
