@@ -13,20 +13,25 @@ Write-Host "[INFO] Starting installation..." -ForegroundColor Cyan
 # ============================================
 
 $InstallPath = "C:\WinToolkit"
-$ZipUrl = "https://github.com/OeGiaretta/WinToolkit/archive/refs/heads/dev.zip"
+$ZipUrl = "https://github.com/OeGiaretta/WinToolkit/archive/refs/heads/main.zip"
 $ZipFile = "$env:TEMP\WinToolkit.zip"
 
 # ============================================
 # Create install directory
 # ============================================
 
-if (!(Test-Path $InstallPath)) {
-    New-Item -ItemType Directory -Path $InstallPath | Out-Null
-    Write-Host "[SUCCESS] Installation folder created." -ForegroundColor Green
+# ============================================
+# Prepare installation directory
+# ============================================
+
+if (Test-Path $InstallPath) {
+    Write-Host "[INFO] Removing previous installation..." -ForegroundColor Yellow
+    Remove-Item $InstallPath -Recurse -Force
 }
-else {
-    Write-Host "[INFO] Installation folder already exists." -ForegroundColor Yellow
-}
+
+New-Item -ItemType Directory -Path $InstallPath | Out-Null
+
+Write-Host "[SUCCESS] Installation folder prepared." -ForegroundColor Green
 
 # ============================================
 # Download

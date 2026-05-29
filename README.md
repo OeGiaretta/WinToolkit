@@ -51,7 +51,7 @@ Run the installer directly from PowerShell:
 
 ```powershell
 irm https://raw.githubusercontent.com/OeGiaretta/WinToolkit/main/install.ps1 | iex
-````
+```
 
 ---
 
