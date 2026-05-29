@@ -1,274 +1,134 @@
 # WinToolkit
 
-![WinToolkit Logo](assets/logo.png)
+> Toolkit CLI modular para Windows
+
+---
+## Idioma
 
 **🇧🇷 Português (Brasil)** | [🇺🇸 English](README.md)
 
-WinToolkit é uma coleção completa de utilitários de linha de comando para Windows, projetada para simplificar tarefas diárias de administração de sistema.  
-Reúne múltiplos scripts .bat em um único lugar, oferecendo acesso rápido a ferramentas para rede, diagnóstico, automação, limpeza de sistema, gerenciamento remoto e muito mais.
+---
+
+## Visão Geral
+
+WinToolkit é um toolkit CLI modular para Windows focado em automação, diagnóstico e utilitários para desenvolvedores.
+
+O que começou como um simples script batch evoluiu para uma ferramenta estruturada com:
+
+- Menus dinâmicos baseados em YAML
+- Interface terminal com ANSI
+- Sistema de localização/i18n
+- Arquitetura modular
+- Integração com PowerShell
+- Automação de utilitários do Windows
+
+O objetivo do projeto é fornecer um ambiente de linha de comando leve, extensível e organizado para usuários avançados e desenvolvedores Windows.
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-### 🌐 Rede e Conectividade
-- **Ver Meu IP** - Exibe configuração completa de rede local
-- **Testar Internet** - Testa conexão com servidor configurável (padrão: 8.8.8.8)
-- **Verificar Conexões** - Lista todas as conexões de rede ativas
-- **IPConfig Remoto** - Obtém configuração de rede de computador remoto
-- **FlushDNS Remoto** - Limpa cache DNS em computador remoto
-- **RegisterDNS Remoto** - Registra DNS em computador remoto
-- **Descobrir MAC** - Descobre endereço MAC pelo IP
-
-### 💻 Gerenciamento Remoto
-- **Reiniciar Computador Remoto** - Reinicia computador na rede
-- **Desligar Computador Remoto** - Desliga computador na rede
-- **Anular Desligamento Remoto** - Cancela desligamento/reinicialização agendado
-- **Enviar Mensagem Remota** - Envia mensagem para usuário logado
-- **Sistema Info Remoto** - Obtém informações completas do sistema
-- **Usuário Logado** - Verifica qual usuário está logado
-- **Fechar Programa Remoto** - Fecha processos em computador remoto
-
-### 🔧 Serviços e Sistema
-- **VNC Status** - Verifica status do serviço VNC
-- **VNC Parar** - Para serviço VNC remoto
-- **VNC Iniciar** - Inicia serviço VNC remoto
-- **Verificar Arquitetura** - Detecta se sistema é 32 ou 64 bits
-- **Verificar Arquitetura Remoto** - Detecta arquitetura em computador remoto
-- **Verificar HDD/SSD** - Identifica tipo de disco (HDD ou SSD)
-
-### 📦 Gerenciamento de Software
-- **Instalar Software Remoto** - Instala software via winget
-- **Desinstalar Software Remoto** - Remove software via winget
-- **Listar Softwares Remoto** - Lista todos os softwares instalados
-- **Visualizar Chave Office** - Exibe chave de produto do Office
-
-### 🖨️ Impressoras
-- **Limpar Impressão** - Limpa fila de impressão local
-- **Listar Impressoras Remoto** - Lista impressoras instaladas remotamente
-- **Instalar Impressora Remoto** - Instala impressora em computador remoto
-
-### 🛠️ Desenvolvimento
-- **Criar Projeto Java** - Cria novo projeto Maven com estrutura padrão
-
-### 🆔 Geradores e Validadores
-- **Gerar CPF** - Gera CPF válido para testes
-- **Validar CPF** - Valida CPF informado
-- **Gerar CNPJ** - Gera CNPJ válido para testes
-- **Validar CNPJ** - Valida CNPJ informado
-- **Gerar Dados de Pessoa** - Gera dados completos de pessoa fictícia para testes
-
-### 🔒 Segurança
-- **Criar Exceção Defender** - Adiciona exceção no Windows Defender
+- Sistema de menus dinâmicos baseado em YAML
+- Interface terminal com ANSI
+- Arquitetura modular
+- Suporte a localização/i18n
+- Utilitários do Windows
+- Ferramentas de diagnóstico de rede
+- Utilitários para desenvolvedores
+- Sistema estruturado de configuração
 
 ---
 
-## 📁 Estrutura do Projeto
+## Demonstração
 
-```
+![WinToolkit Demo](assets/WinToolKit.gif)
+
+---
+
+## Instalação
+
+Execute o instalador diretamente pelo PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/OeGiaretta/WinToolkit/main/install.ps1 | iex
+````
+
+---
+
+## Estrutura do Projeto
+
+``````txt
 WinToolkit/
 ├── assets/
-│   └── logo.png
-├── i18n/                 # Arquivos de internacionalização
-│   ├── en-US.yml         # Traduções em inglês
-│   └── pt-BR.yml         # Traduções em português (Brasil)
-├── lib/                  # Utilitários internos
-│   └── parse_yaml.ps1    # Parser YAML para traduções
-├── scripts/              # 34 scripts organizados
-│   ├── ver_meu_ip.bat
-│   ├── testar_internet.bat
-│   ├── limpar_impressao.bat
-│   ├── reiniciar_computador_remoto.bat
-│   └── ... (31 outros scripts)
-├── config.bat            # Arquivo de configuração
-├── WinToolkit.bat        # Menu principal
-└── README.md
-```
+├── i18n/
+├── lib/
+│   ├── ui/
+│   └── parse_yaml.ps1
+├── scripts/
+├── install.ps1
+├── config.bat
+└── WinToolkit.bat
+``````
+---
+
+## Tecnologias
+
+* Batch
+* PowerShell
+* YAML
+* ANSI Escape Sequences
+* Windows Terminal
 
 ---
 
-## 🛠️ Requisitos
+## Por que eu construí isso?
 
-- **Sistema Operacional**: Windows 10 ou superior
-- **Permissões**: Administrador (para algumas funcionalidades)
-- **Dependências Opcionais**:
-  - `psexec` (PsTools) - Para comandos remotos
-  - `winget` - Para gerenciamento de software
-  - `curl` - Para geradores de CPF/CNPJ (incluído no Windows 10+)
-  - `mvn` (Maven) - Para criação de projetos Java
+O WinToolkit começou como um script pessoal de automação para Windows criado para simplificar tarefas repetitivas de administração e troubleshooting.
+
+Conforme o projeto evoluiu, ficou claro que a ferramenta precisava de uma arquitetura melhor, modularidade, suporte a localização e uma experiência mais profissional no terminal.
+
+Este projeto se tornou uma oportunidade de transformar uma ferramenta antiga e inacabada em um toolkit CLI escalável e organizado.
 
 ---
 
-## ⚙️ Configuração
+## A História do Retorno
 
-1. **Clone o repositório**:
-   ```sh
-   git clone https://github.com/OeGiaretta/WinToolkit
-   ```
+Originalmente, o WinToolkit era apenas uma coleção de scripts batch agrupados sem uma interface consistente ou arquitetura definida.
 
-2. **Configure as credenciais e preferências** (opcional):
-   
-   Edite o arquivo `config.bat` com suas credenciais de domínio e preferências:
-   ```batch
-   set "DOMAIN=SEU_DOMINIO"
-   set "ADMIN_USER=administrador"
-   set "ADMIN_PASSWORD=sua_senha_aqui"
-   set "TEST_IP=8.8.8.8"
-   set "VNC_SERVICE_NAME=uvnc_service"
-   set "SHUTDOWN_TIMEOUT=35"
-   set "LANGUAGE=pt-BR"
-   ```
+Durante o desafio GitHub Finish-Up-A-Thon, o projeto foi completamente reestruturado e evoluído com:
 
-   > **Nota**: Se o `config.bat` não existir, o sistema usará valores padrão.
+* Carregamento dinâmico de menus
+* Configuração baseada em YAML
+* Interface ANSI
+* Sistema de localização
+* Organização modular
+* Suporte a instalador
+* Melhor experiência no terminal
 
-3. **Configuração de Idioma** 🌍:
-   
-   O WinToolkit suporta múltiplos idiomas através de internacionalização baseada em YAML:
-   
-   - **Idiomas Disponíveis**:
-     - `en-US` - English (United States)
-     - `pt-BR` - Português (Brasil)
-   
-   - **Mudar Idioma**: Edite a variável `LANGUAGE` no arquivo `config.bat`
-   - **Traduções Personalizadas**: Crie novos arquivos YAML no diretório `i18n/` seguindo a mesma estrutura dos arquivos de tradução existentes
-   
-   A interface do menu carregará automaticamente o idioma selecionado na inicialização.
+O desafio se tornou a motivação perfeita para finalmente polir e publicar o projeto da forma correta.
 
 ---
 
-## ▶️ Como Usar
+## Roadmap
 
-1. **Execute o script principal**:
-   ```sh
-   WinToolkit.bat
-   ```
-
-2. **Selecione uma opção** do menu (1-34)
-
-3. **Siga as instruções** na tela para cada ferramenta
-
----
-
-## ✨ Características
-
-- ✅ **Nomes Autoexplicativos** - Todos os scripts têm nomes claros e descritivos
-- ✅ **Validação de Entrada** - Verifica dados antes de executar
-- ✅ **Tratamento de Erros** - Mensagens claras de sucesso/erro
-- ✅ **Verificação de Dependências** - Verifica se ferramentas necessárias estão instaladas
-- ✅ **Configuração Centralizada** - Todas as configurações em um único arquivo
-- ✅ **Suporte Multilíngue** - Internacionalização baseada em YAML (en-US, pt-BR)
-- ✅ **Portátil** - Não requer instalação
-- ✅ **Modular** - Cada funcionalidade em script separado
+* [x] Interface terminal ANSI
+* [x] Menus dinâmicos
+* [x] Configuração baseada em YAML
+* [x] Sistema de localização
+* [x] Instalador
+* [ ] Sistema de plugins
+* [ ] Módulos PowerShell
+* [ ] Integração com package managers
+* [ ] Versão GUI
 
 ---
 
-## 📋 Lista Completa de Scripts
+## GitHub Finish-Up-A-Thon
 
-### Rede Local (4)
-- `ver_meu_ip.bat` - Ver Meu IP
-- `testar_internet.bat` - Testar Internet
-- `verificar_conexoes.bat` - Verificar Conexões
-- `ipconfig_remoto.bat` - IPConfig Remoto
-
-### Gerenciamento Remoto (8)
-- `reiniciar_computador_remoto.bat` - Reiniciar Computador Remoto
-- `desligar_computador_remoto.bat` - Desligar Computador Remoto
-- `anular_desligamento_remoto.bat` - Anular Desligamento Remoto
-- `enviar_mensagem_remota.bat` - Enviar Mensagem Remota
-- `sistema_info_remoto.bat` - Sistema Info Remoto
-- `usuario_logado.bat` - Usuário Logado
-- `fechar_programa_remoto.bat` - Fechar Programa Remoto
-- `descobrir_mac.bat` - Descobrir MAC
-
-### Serviços VNC (3)
-- `vnc_status.bat` - VNC Status
-- `vnc_parar.bat` - VNC Parar
-- `vnc_iniciar.bat` - VNC Iniciar
-
-### Sistema (4)
-- `verificar_arquitetura.bat` - Verificar Arquitetura
-- `verificar_arquitetura_remoto.bat` - Verificar Arquitetura Remoto
-- `verificar_hdd_ssd.bat` - Verificar HDD/SSD
-- `visualizar_chave_office.bat` - Visualizar Chave Office
-
-### Software (3)
-- `instalar_software_remoto.bat` - Instalar Software Remoto
-- `desinstalar_software_remoto.bat` - Desinstalar Software Remoto
-- `listar_softwares_remoto.bat` - Listar Softwares Remoto
-
-### Impressoras (3)
-- `limpar_impressao.bat` - Limpar Impressão
-- `listar_impressoras_remoto.bat` - Listar Impressoras Remoto
-- `instalar_impressora_remoto.bat` - Instalar Impressora Remoto
-
-### DNS (2)
-- `flushdns_remoto.bat` - FlushDNS Remoto
-- `registerdns_remoto.bat` - RegisterDNS Remoto
-
-### Desenvolvimento (1)
-- `criar_projeto_java.bat` - Criar Projeto Java
-
-### Geradores/Validadores (5)
-- `gerar_cpf.bat` - Gerar CPF
-- `validar_cpf.bat` - Validar CPF
-- `gerar_cnpj.bat` - Gerar CNPJ
-- `validar_cnpj.bat` - Validar CNPJ
-- `gerar_dados_pessoa.bat` - Gerar Dados de Pessoa
-
-### Segurança (1)
-- `criar_excecao_defender.bat` - Criar Exceção Defender
-
-**Total: 34 scripts**
+Este projeto é uma submissão para o desafio GitHub Finish-Up-A-Thon.
 
 ---
 
-## 🔧 Dependências Externas
+## Licença
 
-### PsTools (psexec)
-Necessário para comandos remotos. Download: [Microsoft Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/pstools)
-
-### Windows Package Manager (winget)
-Incluído no Windows 11 e disponível para Windows 10 via Microsoft Store.
-
-### Apache Maven
-Necessário apenas para criação de projetos Java. Download: [Apache Maven](https://maven.apache.org/download.cgi)
-
----
-
-## 📌 Roadmap
-
-- [ ] Adicionar menu com cores
-- [ ] Expandir utilitários de rede
-- [ ] Melhorar sistema de logs
-- [ ] Adicionar versão PowerShell
-- [ ] Adicionar mais validações
-- [x] Suporte a múltiplos idiomas (en-US, pt-BR)
-
----
-
-## 🤝 Contribuições
-
-Pull requests são bem-vindos! Para mudanças maiores, por favor abra uma issue primeiro para discutir o que você gostaria de modificar.
-
----
-
-## 📜 Licença
-
-Este projeto está licenciado sob a Licença MIT.
-
----
-
-## 👤 Autor
-
-**OeGiaretta**
-
-- GitHub: [@OeGiaretta](https://github.com/OeGiaretta)
-
----
-
-## 🙏 Agradecimentos
-
-- Scripts organizados e melhorados com validações e tratamento de erros
-- Nomes autoexplicativos para melhor usabilidade
-- Estrutura modular para fácil manutenção
-
+MIT License

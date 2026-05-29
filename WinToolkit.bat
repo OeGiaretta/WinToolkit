@@ -1,8 +1,9 @@
 @echo off
-chcp 1252 >nul
+chcp 65001 >nul
 
 setlocal enabledelayedexpansion
 set "BASE_DIR=%~dp0"
+call "%~dp0lib\ui\ui.bat"
 
 :: ============================================
 :: Load configuration
@@ -87,22 +88,29 @@ if not defined MENU_EXIT_KEY (
 :: Main Menu Loop
 :: ============================================
 
+echo.
+echo %BYELLOW%Available Modules:%RESET%
+echo.
+
 :menu
-cls
-echo =====================
-echo !MENU_TITLE!
-echo =====================
+
+call :header
 
 for /l %%i in (1,1,!MENU_COUNT!) do (
-    if defined MENU_VALUE_%%i echo   %%i - !MENU_VALUE_%%i!
+    if defined MENU_VALUE_%%i (
+        echo   %BCYAN%[%%i]%RESET% !MENU_VALUE_%%i!
+    )
 )
 
-echo   !MENU_EXIT_KEY! - !MENU_EXIT_VALUE!
+echo.
+echo %BRED%[!MENU_EXIT_KEY!]%RESET% !MENU_EXIT_VALUE!
 
-echo =====================
-set /p opt="!MENU_PROMPT!"
+echo.
+echo %CYAN%+--------------------------------------+%RESET%
+echo.
+set /p opt=%WHITE%!MENU_PROMPT! ^>%RESET% 
 
-if /i "!opt!"=="!MENU_EXIT_KEY!" goto:exit
+if /i "!opt!"=="!MENU_EXIT_KEY!" goto exit
 
 set "valid=0"
 for /l %%i in (1,1,!MENU_COUNT!) do (
@@ -113,7 +121,7 @@ for /l %%i in (1,1,!MENU_COUNT!) do (
             if exist "%BASE_DIR%scripts\!script!" (
                 call "%BASE_DIR%scripts\!script!"
             ) else (
-                echo ERROR: Script '!script!' not found!
+                call :error "Script file !script! not found!" 
                 pause
             )
         )
@@ -125,7 +133,25 @@ if !valid! equ 0 if not "!opt!"=="" (
     pause
 )
 
-goto:menu
+goto menu
+
+:error
+echo.
+echo %BRED%[ERROR]%RESET% %~1
+echo.
+exit /b
+
+:success
+echo.
+echo %BGREEN%[SUCCESS]%RESET% %~1
+echo.
+exit /b
+
+:info
+echo.
+echo %BCYAN%[INFO]%RESET% %~1
+echo.
+exit /b
 
 :exit
 exit
